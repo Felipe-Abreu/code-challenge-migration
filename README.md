@@ -1,13 +1,17 @@
-
-# DummyJSON Client - Java 8 e Spring Boot 2.x.x
+# DummyJSON Client - Java 21 e Spring Boot 3.8.5
 
 ## Descrição do Projeto
 
-Este projeto é um microsserviço Java que interage com a API pública [DummyJSON](https://dummyjson.com/docs/products) para realizar operações de busca de produtos. O projeto foi desenvolvido usando Java 8 e Spring Boot 2.6.x.
+Este projeto é um microsserviço Java que interage com a API pública [DummyJSON](https://dummyjson.com/docs/products)
+para realizar operações de busca de produtos. O projeto foi desenvolvido usando Java 8 e Spring Boot 2.6.x.
+
+O Projeto conforme objetivo fornecido foi migrado para Java 21 e Spring Boot 3.8.5.
 
 ## Objetivo do Desafio
 
-O desafio consiste em migrar este projeto para Java 17 e Spring Boot 3.2.5. Durante a migração, você enfrentará várias dificuldades, incluindo a adaptação ao novo namespace, substituição de métodos depreciados e ajustes em testes unitários.
+O desafio consiste em migrar este projeto para Java 17 e Spring Boot 3.2.5. Durante a migração, você enfrentará várias
+dificuldades, incluindo a adaptação ao novo namespace, substituição de métodos depreciados e ajustes em testes
+unitários.
 
 ## Funcionalidades
 
@@ -21,41 +25,58 @@ O desafio consiste em migrar este projeto para Java 17 e Spring Boot 3.2.5. Dura
 
 ```bash
 dummyjson-client
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com.example.dummyjsonclient
-│   │   │       ├── DummyJsonClientApplication.java
-│   │   │       ├── config
-│   │   │       │   └── RestTemplateConfig.java
-│   │   │       ├── controller
-│   │   │       │   └── ProductController.java
-│   │   │       ├── dto
-│   │   │       │   └── Product.java
-│   │   │       ├── service
-│   │   │       │   └── ProductService.java
-│   │   └── resources
-│   │       └── application.yaml
-│   └── test
-│       ├── java
-│       │   └── com.example.dummyjsonclient
-│       │       ├── config
-│       │       │   └── RestTemplateConfigTest.java
-│       │       └── controller
-│       │       │   └── ProductControllerTest.java
-│       │       ├── dto
-│       │       │   └── ProductTest.java
-│       │       └── service
-│       │           └── ProductServiceTest.java
-│       └── resources
-└── pom.xml
+├── pom.xml
+└── src
+    ├── main
+    │ ├── java
+    │ │   └── com
+    │ │     └── example
+    │ │         └── dummyjson
+    │ │             ├── config
+    │ │             ├── FeignProduct.java
+    │ │             │ ├── RestTemplateConfig.java
+    │ │             │ ├── SwaggerConfig.java
+    │ │             │ └── WebClientConfig.java
+    │ │             ├── controller
+    │ │             │ ├── ProductController.java
+    │ │             │ ├── ProductFeignController.java
+    │ │             │ └── ProductWebClientController.java
+    │ │             ├── dto
+    │ │             │ ├── Product.java
+    │ │             │ └── ProductResponse.java
+    │ │             ├── DummyJsonClientApplication.java
+    │ │             └── service
+    │ │                 ├── ProductFeignService.java
+    │ │                 ├── ProductService.java
+    │ │                 └── ProductWebClientService.java
+    │ └── resources
+    │     └── application.yaml
+    └── test
+        └── java
+            └── com
+                └── example
+                    └── dummyjson
+                        ├── config
+                        │ ├── RestTemplateConfigTest.java
+                        │ └── WebClientConfigTest.java
+                        ├── controller
+                        │ ├── ProductControllerTest.java
+                        │ ├── ProductFeignControllerTest.java
+                        │ └── ProductWebClientControllerTest.java
+                        ├── dto
+                        │ └── ProductTest.java
+                        └── service
+                            ├── ProductFeignServiceTest.java
+                            ├── ProductServiceTest.java
+                            └── ProductWebClientServiceTest.java
+
 ```
 
 ## Passos para Executar o Projeto
 
 ### Pré-requisitos
 
-- **Java 8**
+- **Java 21**
 - **Maven 3.8.x**
 
 ### Executar a Aplicação
@@ -76,7 +97,7 @@ dummyjson-client
 
 3. Acesse o serviço:
 
-    O serviço estará disponível em `http://localhost:8080`.
+   O serviço estará disponível em `http://localhost:8080`.
 
 ### Executar Testes
 
@@ -90,7 +111,8 @@ mvn clean test
 
 1. Atualizar o `pom.xml` para usar Java 17+ e Spring Boot 3.2.5.
 2. Substituir `RestTemplate` por `WebClient` ou `Openfeign`.
-3. Substituir os testes unitários feitos com `JUnit 4` e `Mockito` por testes de integração utilizando `@SpringBootTest`.
+3. Substituir os testes unitários feitos com `JUnit 4` e `Mockito` por testes de integração utilizando
+   `@SpringBootTest`.
 4. Refatorar qualquer código depreciado ou incompatível.
 5. Garantir que todos os testes ainda passam após a migração.
 6. Deixar a URL da API dummyjson parametrizada por ambiente no projeto.

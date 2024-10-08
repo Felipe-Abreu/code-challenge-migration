@@ -1,19 +1,20 @@
 package com.example.dummyjson.config;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(MockitoJUnitRunner.class)
-public class RestTemplateConfigTest {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@ExtendWith(MockitoExtension.class)
+class RestTemplateConfigTest {
 
     @InjectMocks
     RestTemplateConfig restTemplateConfig;
 
     @Test
-    public void testRestTemplateConfig(){
-        Assert.assertNotNull(this.restTemplateConfig.restTemplate());
+    void testRestTemplateConfig() {
+        assertNotNull(this.restTemplateConfig.restTemplate());
     }
 }

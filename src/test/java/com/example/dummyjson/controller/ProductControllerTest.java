@@ -2,21 +2,22 @@ package com.example.dummyjson.controller;
 
 import com.example.dummyjson.dto.Product;
 import com.example.dummyjson.service.ProductService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ProductControllerTest {
+@ExtendWith(MockitoExtension.class)
+class ProductControllerTest {
 
     @InjectMocks
     private ProductController productController;
@@ -25,28 +26,27 @@ public class ProductControllerTest {
     private ProductService productService;
 
     @Test
-    public void testGetAllProducts() {
-        Product product1 = new Product();
-        product1.setId(1L);
-        product1.setTitle("Product 1");
+    void testGetAllProducts() {
+        Product product1 = new Product(1L, "Product 1", "", 0.0);
 
-        Product product2 = new Product();
-        product2.setId(2L);
-        product2.setTitle("Product 2");
+        Product product2 = new Product(2L, "Product 2", "", 0.0);
 
         List<Product> products = Arrays.asList(product1, product2);
-        when(productService.getAllProducts()).thenReturn(products);
 
-        List<Product> result = productController.getAllProducts();
+        when(productService.getAllProducts()).thenReturn(ResponseEntity.ok(products));
+
+        ResponseEntity<List<Product>> response = productController.getAllProducts();
+
+        List<Product> result = response.getBody();
+        assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals("Product 1", result.get(0).getTitle());
+        assertEquals("Product 2", result.get(1).getTitle());
     }
 
     @Test
-    public void testGetProductById() {
-        Product product = new Product();
-        product.setId(1L);
-        product.setTitle("Product 1");
+    void testGetProductById() {
+        Product product = new Product(1L, "Product 1", "", 0.0);
 
         when(productService.getProductById(1L)).thenReturn(product);
 

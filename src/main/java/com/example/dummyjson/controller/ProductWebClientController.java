@@ -1,7 +1,7 @@
 package com.example.dummyjson.controller;
 
 import com.example.dummyjson.dto.Product;
-import com.example.dummyjson.service.ProductService;
+import com.example.dummyjson.service.ProductWebClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -13,21 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "Product RestTemplate", description = "Endpoints utilizando RestTemplate")
+@Tag(name = "Product WebClient", description = "Endpoints utilizando WebClient")
 @RestController
-@RequestMapping("/rest/api/products")
+@RequestMapping("/web/api/products")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductWebClientController {
 
-    private final ProductService productService;
+    private final ProductWebClientService service;
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
-        return productService.getAllProducts();
+        return service.getAllProductsByWebClient();
     }
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable("id") @NotNull Long id) {
-        return productService.getProductById(id);
+        return service.getByWebClientProductById(id);
     }
+
+
 }
