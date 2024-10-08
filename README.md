@@ -84,7 +84,7 @@ dummyjson-client
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.ibm.com/Wendell-Santos/code-challenge-migration.git
+    git clone https://github.com/Felipe-Abreu/code-challenge-migration
     cd dummyjson-client
     ```
 
@@ -128,3 +128,16 @@ mvn clean test
 
 - Entregar o projeto em container será um diferencial.
 - Fica a critério do desenvolvedor inserir ou remover dependencias do projeto para garantir o objetivo do challenge.
+
+## O que foi feito
+
+- Foi realizado a migração para versão 21 do Java.
+- Migração do Spring para 3.8.5.
+- Atualização das dependencias existentes e adicionado as dependencias para FeignClient, WebClient e Lombok.
+- No projeto foi aproveitado que utilizava uma versão compativel com Java 8 do RestTemplate, assim optando somente por atualizar a versão da depêndencia e utilizar o memso.
+- No projeto foi implementado a possibilidade de se realizar consultas tanto com RestTemplate, quanto com FeignClient e WebClient.
+   - Sendo assim os endpoints ficaram:
+     - FeignClient: localhost:8080/feign/api/products/{id} e localhost:8080/feign/api/products
+     - RestTemplate: localhost:8080/rest/api/products/{id} e localhost:8080/rest/api/products
+     - WebClient: localhost:8080/web/api/products/{id} e localhost:8080/web/api/products
+- Também foi criado o DockerFile do projeto e seu respectivo docker-compose
