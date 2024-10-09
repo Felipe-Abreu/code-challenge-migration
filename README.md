@@ -141,3 +141,6 @@ mvn clean test
      - RestTemplate: localhost:8080/rest/api/products/{id} e localhost:8080/rest/api/products
      - WebClient: localhost:8080/web/api/products/{id} e localhost:8080/web/api/products
 - Também foi criado o DockerFile do projeto e seu respectivo docker-compose
+- Foi adicionado Swagger para realizar a documentação da API de forma dinâmica.
+
+  - ![image](src/main/resources/img.png)

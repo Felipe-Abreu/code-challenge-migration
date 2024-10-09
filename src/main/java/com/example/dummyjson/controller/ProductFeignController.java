@@ -2,6 +2,7 @@ package com.example.dummyjson.controller;
 
 import com.example.dummyjson.dto.Product;
 import com.example.dummyjson.service.ProductFeignService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Product FeignClient", description = "Endpoints utilizando FeignClient")
 @RestController
 @RequestMapping("/feign/api/products")
 @RequiredArgsConstructor

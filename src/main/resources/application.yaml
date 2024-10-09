@@ -3,3 +3,10 @@ server:
 
 app:
   base_url_dummyjson: https://dummyjson.com/products
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

@@ -14,7 +14,6 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .components(new Components())
                 .info(new Info()
                         .title("Code Challenge Migration")
                         .version("1.0"));
